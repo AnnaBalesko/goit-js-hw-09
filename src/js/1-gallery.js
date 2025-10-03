@@ -89,6 +89,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 let gallery = new SimpleLightbox('.gallery-item a', {
   captionsData: 'alt',
   captionDelay: 250,
-  close: true,
+    close: true,
+  docClose: false,
 });
 gallery.on('show.simplelightbox');

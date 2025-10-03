@@ -20,6 +20,8 @@ function populateText() {
   const message = localStorage.getItem(STORAGE_KEY);
   if (message) {
     const parsedData = JSON.parse(message);
+     formData.email = parsedData.email || '';
+     formData.message = parsedData.message || '';
     document.querySelector('input[name="email"]').value =
       parsedData.email || '';
     document.querySelector('textarea[name="message"]').value =

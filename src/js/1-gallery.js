@@ -64,32 +64,65 @@ const images = [
   },
 ];
 
-const container = document.querySelector('.gallery');
+const gallery = document.querySelector('.gallery');
 
-const galleryImg = images
-  .map(
-    img =>
-      `<li class='gallery-item'>
-    <a class='gallery-link' 
-    href='${img.original}'>
-    <img 
-    class='gallery-image' 
-    src='${img.preview}'
-    alt='${img.description}'/>
-    </a>
-    </li>`
-  )
-  .join('');
+function imgTemplate(img) {
+  return `<li class="gallery-item">
+	<a class="gallery-link" href="${img.original}">
+		<img 
+		  class="gallery-image" 
+		  src="${img.preview}" 
+		  alt="${img.description}" 
+		/>
+	</a>
+</li>
+`;
+}
 
-container.innerHTML = galleryImg;
+function imgsTemplate(arr) {
+  return arr.map(imgTemplate).join('');
+}
+
+const markup = imgsTemplate(images);
+gallery.insertAdjacentHTML('beforeend', markup);
 
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-let gallery = new SimpleLightbox('.gallery-item a', {
+let galleryItem = new SimpleLightbox('.gallery-item a', {
   captionsData: 'alt',
   captionDelay: 250,
-    close: true,
+  close: true,
   docClose: false,
 });
-gallery.on('show.simplelightbox');
+galleryItem.on('show.simplelightbox');
+
+// const container = document.querySelector('.gallery');
+
+// const galleryImg = images
+//   .map(
+//     img =>
+//       `<li class='gallery-item'>
+//     <a class='gallery-link'
+//     href='${img.original}'>
+//     <img
+//     class='gallery-image'
+//     src='${img.preview}'
+//     alt='${img.description}'/>
+//     </a>
+//     </li>`
+//   )
+//   .join('');
+
+// container.innerHTML = galleryImg;
+
+// import SimpleLightbox from 'simplelightbox';
+// import 'simplelightbox/dist/simple-lightbox.min.css';
+
+// let gallery = new SimpleLightbox('.gallery-item a', {
+//   captionsData: 'alt',
+//   captionDelay: 250,
+//     close: true,
+//   docClose: false,
+// });
+// gallery.on('show.simplelightbox');
